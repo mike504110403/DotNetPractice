@@ -8,8 +8,15 @@ namespace MyCodeBase.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         public ActionResult Index()
         {
+            logger.Trace("**** Trace *** ");
+            logger.Debug("**** Debug ***");
+            logger.Info("**** Info ***");
+            logger.Warn("**** Warn ***");
+            logger.Error("**** Error ***");
+            logger.Fatal("**** Fatal ***");
             return View();
         }
 

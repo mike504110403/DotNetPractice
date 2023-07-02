@@ -1,8 +1,13 @@
-﻿using StackExchange.Redis;
+﻿using Autofac;
+
+using MyCodeBase.Console.Service;
+
+using StackExchange.Redis;
 
 using System;
 using System.Collections.Specialized;
 using System.Configuration;
+using System.Reflection;
 
 // 建立 reids 連線
 ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("localhost");
@@ -44,3 +49,26 @@ if (!db.KeyExists(_lockKey))
     db.KeyDelete(_lockKey);
 }
 Console.WriteLine(Key + ": " + db.StringGet(Key));
+
+// 建container Builder
+//var builder = new ContainerBuilder();
+
+// 註冊
+// 註冊Type
+// builder.RegisterType<ConsoleLogger>.As<ILogger>();
+// 用實例註冊
+// var output = new StringWriter();
+// builder.RegisterInstance(output).As<TextWriter>();
+// 也可以用lambda
+// builder.Register(c => new ConfigReader("mysection")).As<IConfigReader>();
+// 用scan的批次註冊
+// builder.RegisterAssemblyTypes(myAssembly) .Where(t => t.Name.EndsWith("Repository")) .AsImplementedInterfaces();
+
+// 建container
+//var container = builder.Build();
+
+// 從container取得component
+//using (var scope = container.BeginLifetimeScope())
+//{
+//    var reader = container.Resolve<IConfigReader>();
+//}
