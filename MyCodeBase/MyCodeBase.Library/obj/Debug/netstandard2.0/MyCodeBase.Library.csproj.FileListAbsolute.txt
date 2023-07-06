@@ -1,0 +1,10 @@
+D:\MyPractice\DotNetPractice\MyCodeBase\MyCodeBase.Library\bin\Debug\netstandard2.0\MyCodeBase.Library.deps.json
+D:\MyPractice\DotNetPractice\MyCodeBase\MyCodeBase.Library\bin\Debug\netstandard2.0\MyCodeBase.Library.dll
+D:\MyPractice\DotNetPractice\MyCodeBase\MyCodeBase.Library\bin\Debug\netstandard2.0\MyCodeBase.Library.pdb
+D:\MyPractice\DotNetPractice\MyCodeBase\MyCodeBase.Library\obj\Debug\netstandard2.0\MyCodeBase.Library.csproj.AssemblyReference.cache
+D:\MyPractice\DotNetPractice\MyCodeBase\MyCodeBase.Library\obj\Debug\netstandard2.0\MyCodeBase.Library.GeneratedMSBuildEditorConfig.editorconfig
+D:\MyPractice\DotNetPractice\MyCodeBase\MyCodeBase.Library\obj\Debug\netstandard2.0\MyCodeBase.Library.AssemblyInfoInputs.cache
+D:\MyPractice\DotNetPractice\MyCodeBase\MyCodeBase.Library\obj\Debug\netstandard2.0\MyCodeBase.Library.AssemblyInfo.cs
+D:\MyPractice\DotNetPractice\MyCodeBase\MyCodeBase.Library\obj\Debug\netstandard2.0\MyCodeBase.Library.csproj.CoreCompileInputs.cache
+D:\MyPractice\DotNetPractice\MyCodeBase\MyCodeBase.Library\obj\Debug\netstandard2.0\MyCodeBase.Library.dll
+D:\MyPractice\DotNetPractice\MyCodeBase\MyCodeBase.Library\obj\Debug\netstandard2.0\MyCodeBase.Library.pdb

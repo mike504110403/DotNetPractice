@@ -13,4 +13,12 @@
     <PackageReference Include="StackExchange.Redis" Version="2.6.116" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MyCodeBase.Library\MyCodeBase.Library.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="OutputFile\" />
+  </ItemGroup>
+
 </Project>
