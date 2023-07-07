@@ -9,10 +9,13 @@ using System.Xml.Linq;
 using Aspose.Words;
 using MyCodeBase.Library.Extensions;
 using Aspose.Words.Reporting;
+using MyCodeBase.Web.Models.BaseService;
+using MyCodeBase.Web.Models.FakeDataForDemoService;
+using Aspose.Cells;
 
 namespace MyCodeBase.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         public ActionResult Index()
@@ -31,29 +34,40 @@ namespace MyCodeBase.Web.Controllers
         /// <returns></returns>
         public ActionResult ExportDocxFile()
         {
-            var t = 0;
-            var testLists = new List<TestList>();
-            while (t < 10)
-            {
-                var testlist = new TestList()
-                {
-                    Subject = "test",
-                    Score = 100
-                };
-                testLists.Add(testlist);
-                t += 1;
-            }
-            var data = new Test()
-            {
-                Name = "HHH",
-                Age = 26,
-                TestLists = testLists
-            };
+            var data = _FakeMultiLayerList.FakeListForBind();
+
             // 開啟範例文檔
-            var doc = new Document("D:\\MyPractice\\DotNetPractice\\MyCodeBase\\MyCodeBase.Console\\Temp\\test.docx");
+            // var filePath = GetPrintTempFilePath("test.docx");
+            // 路徑先寫死 等route整理好再用extension取
+            var doc = new Document("D:\\MyPractice\\DotNetPractice\\MyCodeBase\\MyCodeBase.Web\\Temp\\test.docx");
             doc.BindData(data);
-            doc.Save("bindedDoc.docx", SaveFormat.Docx);
-            return File(doc.GetFileStream(SaveFormat.Docx), "application/docx");
+            doc.Save("bindedDoc.docx", Aspose.Words.SaveFormat.Docx);
+            //var docs = new List<Document>();
+            //docs.Add(doc);
+            //docs.Add(doc);
+            ////var mergeDocs = _FileService.MergeDocs(docs);
+            //var combineDocs = _FileService.CombineAsposeDoc(docs); 
+            //var combinModels = _FileService.CombineModelsToAsposeDoc(docs, doc);
+            
+            return File(doc.GetFileStream(Aspose.Words.SaveFormat.Docx), "application/docx");
+        }
+
+        /// <summary>
+        /// 取得xlsx檔匯出串流
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ExportXlsxFile()
+        {
+            var data = _FakeMultiLayerList.FakeListForBind();
+
+            // 開啟範例文檔
+            // var filePath = GetPrintTempFilePath("test.docx");
+            // 路徑先寫死 等route整理好再用extension取
+            var workBook = new Workbook("D:\\MyPractice\\DotNetPractice\\MyCodeBase\\MyCodeBase.Web\\Temp\\test.xlsx");
+            workBook.BindData(data);
+            workBook.Save("bindedDoc.xlsx", Aspose.Cells.SaveFormat.Xlsx);
+            
+            return File(workBook.GetFileStream(Aspose.Cells.SaveFormat.Xlsx), "application/xlsx");
         }
     }
 }
