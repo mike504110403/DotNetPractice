@@ -36,7 +36,6 @@ namespace MyCodeBase.Web.Controllers
             return ControllerContext.RouteData.Values["action"].ToString();
         }
 
-
         #region Aspose.Words
 
         /// <summary>

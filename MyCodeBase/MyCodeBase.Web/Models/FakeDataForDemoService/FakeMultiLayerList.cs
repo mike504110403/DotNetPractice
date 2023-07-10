@@ -38,7 +38,7 @@ namespace MyCodeBase.Web.Models.FakeDataForDemoService
                 Name = "HHH",
                 Age = 26,
                 TestLists = testLists,
-                TestMajor = testMajor
+                TestMajor = test
             };
 
             return data;

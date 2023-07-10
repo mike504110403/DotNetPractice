@@ -9,7 +9,7 @@ namespace MyCodeBase.Library.ViewModels.Test
         public string Name { get; set; }
         public int Age { get; set; }
         public List<TestList> TestLists { get; set; }
-        public List<TestMajor> TestMajor { get; set; }
+        public TestMajor TestMajor { get; set; }
     }
 
     public class TestMajor

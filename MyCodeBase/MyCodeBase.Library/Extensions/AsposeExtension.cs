@@ -67,7 +67,7 @@ namespace MyCodeBase.Library.Extensions
             var dataSet = new DataSet();
             // Data 類別第一層
             // 取得單一field bind後table
-            //var table = GetBindDataSingleField(data);
+            var table = GetBindDataCompositeField(data, fillNewRowWhenEmpty);
             //if (table.Rows.Count > 0)
             //{
             //    var row = table.Rows[0];
@@ -78,9 +78,9 @@ namespace MyCodeBase.Library.Extensions
             //        designer.SetDataSource(column.ColumnName, row[column.ColumnName]);
             //    }
             //}
-            //var list = GetBindDataCompositeField(data, fillNewRowWhenEmpty);
-            //dataSet.Tables.AddRange(list.ToArray());
+            dataSet.Tables.AddRange(table.ToArray());
             //designer.SetDataSource(dataSet);
+
             // Data 類別第二層(List內的List)
             // 取得列表 field bind後table
             var listTables = GetBindDataListField(data, fillNewRowWhenEmpty);
@@ -197,8 +197,11 @@ namespace MyCodeBase.Library.Extensions
         {
             var tables = new List<DataTable>();
             // 取得資料的 名稱、屬性 列表 // 資料類型為類且非列表
-            var TypeFields = data.GetType().GetProperties().Where(p => p.PropertyType.IsClass && !(p.GetValue(data, null) is IList)).ToList();
-
+            //var TypeFields = data.GetType().GetProperties().Where(p => p.PropertyType.IsClass && !(p.GetValue(data, null) is IList)).ToList();
+            var TypeFields = data.GetType().GetProperties().Where(p => p.PropertyType.IsClass 
+                                                                    && !p.PropertyType.IsGenericType
+                                                                    && !(p.PropertyType == typeof(string))
+                                                                    && !(p.GetValue(data, null) is IList)).ToList();
             foreach (var item in TypeFields)
             {
                 var table = new DataTable()
@@ -206,9 +209,12 @@ namespace MyCodeBase.Library.Extensions
                     TableName = item.Name
                 };
                 // 取得屬性的類型泛型 非單一時報錯
-                var type = item.PropertyType.GetGenericArguments().Single();
+                //var type = item.PropertyType.GetType();
                 // 取得資料的 名稱、屬性 列表 // 列表內資料非泛型、非列表
-                var columnFieldList = type.GetProperties().Select(x => new { x.Name, x.PropertyType }).ToList();
+                //var columnFieldList = type.GetProperties().Select(x => new { x.Name, x.PropertyType }).ToList();
+                var test = item.PropertyType.GetType().GetProperties().ToList();
+                // todo: 取class屬性
+                var columnFieldList = item.PropertyType.GetType().GetProperties().Where(p => !(p.PropertyType.IsGenericType && p is IList)).Select(x => new { x.Name, x.PropertyType }).ToList();
                 // List<T> 中取得 T 的 屬性名稱、類型
                 foreach (var column in columnFieldList)
                 {
