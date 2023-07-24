@@ -11,6 +11,7 @@ using MyCodeBase.Library.Extensions;
 using MyCodeBase.Library.ViewModels.Test;
 using Aspose.Words;
 
+#region Redis
 // 建立 reids 連線
 //ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("localhost");
 //// 也可以一次連多個
@@ -51,7 +52,9 @@ using Aspose.Words;
 //    db.KeyDelete(_lockKey);
 //}
 //Console.WriteLine(Key + ": " + db.StringGet(Key));
+#endregion
 
+#region DI
 // 建container Builder
 //var builder = new ContainerBuilder();
 
@@ -74,27 +77,57 @@ using Aspose.Words;
 //{
 //    var reader = container.Resolve<IConfigReader>();
 //}
+#endregion
 
-//var dateTime = DateTime.Now;
-//Console.WriteLine(dateTime.ToDateString());
-var t = 0;
-var testLists = new List<TestList>();
-while (t < 10)
-{
-    var testlist = new TestList()
-    {
-        Subject = "test",
-        Score = 100
-    };
-    testLists.Add(testlist);
-}
-var test = new Test()
-{
-    UserName = "HHH",
-    Age = 26,
-    TestLists = testLists
-};
-// 開啟範例文檔
-var doc = new Document("D:\\MyPractice\\DotNetPractice\\MyCodeBase\\MyCodeBase.Console\\Temp\\test.docx");
-doc.BindData(test);
-doc.Save("D:\\MyPractice\\DotNetPractice\\MyCodeBase\\MyCodeBase.Console\\OutputFile\\bindedDoc.docx", SaveFormat.Docx);
+#region aspose
+//var t = 0;
+//var testLists = new List<TestList>();
+//while (t < 10)
+//{
+//    var testlist = new TestList()
+//    {
+//        Subject = "test",
+//        Score = 100
+//    };
+//    testLists.Add(testlist);
+
+//}
+//var test = new Test()
+//{
+//    UserName = "HHH",
+//    Age = 26,
+//    TestLists = testLists
+//};
+//// 開啟範例文檔
+//var doc = new Document("D:\\MyPractice\\DotNetPractice\\MyCodeBase\\MyCodeBase.Console\\Temp\\test.docx");
+//doc.BindData(test);
+//doc.Save("D:\\MyPractice\\DotNetPractice\\MyCodeBase\\MyCodeBase.Console\\OutputFile\\bindedDoc.docx", SaveFormat.Docx);
+#endregion
+
+#region MathExtension
+//var intString1 = "";
+//var intString2 = "123";
+//var intString3 = "我知道呀";
+//var intString4 = "12.0";
+//var intString5 = "12.12345";
+//Console.WriteLine(intString1);
+//Console.WriteLine("int: " + intString1.IntSafeParse());
+//Console.WriteLine("double: " + intString1.DoubleSafeParse());
+//Console.WriteLine(intString2);
+//Console.WriteLine("int: " + intString2.IntSafeParse());
+//Console.WriteLine("double: " + intString2.DoubleSafeParse());
+//Console.WriteLine(intString3);
+//Console.WriteLine("int: " + intString3.IntSafeParse());
+//Console.WriteLine("double: " + intString3.DoubleSafeParse());
+//Console.WriteLine(intString4);
+//Console.WriteLine("int: " + intString4.IntSafeParse());
+//Console.WriteLine("double: " + intString4.DoubleSafeParse());
+//Console.WriteLine(intString5);
+//Console.WriteLine("int: " + intString5.IntSafeParse());
+//Console.WriteLine("double: " + intString5.DoubleSafeParse());
+
+#endregion
+
+// zh-tw
+var test = System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
+Console.WriteLine(test);
