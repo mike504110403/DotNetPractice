@@ -2,6 +2,8 @@
 using Aspose.Words;
 using Aspose.Words.Reporting;
 
+using MyCodeBase.Library.ViewModels.Test;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -51,7 +53,6 @@ namespace MyCodeBase.Library.Extensions
             #endregion
             return doc;
         }
-        // todo: 第一層資料對應不到
         /// <summary>
         /// 把資料合併到 workBook 中同名的㯗位
         /// </summary>
@@ -67,19 +68,12 @@ namespace MyCodeBase.Library.Extensions
             var dataSet = new DataSet();
             // Data 類別第一層
             // 取得單一field bind後table
-            var table = GetBindDataCompositeField(data, fillNewRowWhenEmpty);
-            //if (table.Rows.Count > 0)
-            //{
-            //    var row = table.Rows[0];
-            //    foreach (DataColumn column in table.Columns)
-            //    {
-            //        // set回 workbook
-            //        var test = row[column.ColumnName];
-            //        designer.SetDataSource(column.ColumnName, row[column.ColumnName]);
-            //    }
-            //}
-            dataSet.Tables.AddRange(table.ToArray());
-            //designer.SetDataSource(dataSet);
+            var test = GetBindDataSingleField(data);
+            // 多設table名與第一層資料對應
+            test.TableName = "data";
+
+            dataSet.Tables.Add(test);
+            designer.SetDataSource(dataSet);
 
             // Data 類別第二層(List內的List)
             // 取得列表 field bind後table
@@ -186,67 +180,6 @@ namespace MyCodeBase.Library.Extensions
 
             return tables;
         }
-        /// <summary>
-        /// 複合類型field bind 後回傳table
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="data"></param>
-        /// <param name="fillNewRowWhenEmpty"></param>
-        /// <returns></returns>
-        private static List<DataTable> GetBindDataCompositeField<T>(T data, bool fillNewRowWhenEmpty)
-        {
-            var tables = new List<DataTable>();
-            // 取得資料的 名稱、屬性 列表 // 資料類型為類且非列表
-            //var TypeFields = data.GetType().GetProperties().Where(p => p.PropertyType.IsClass && !(p.GetValue(data, null) is IList)).ToList();
-            var TypeFields = data.GetType().GetProperties().Where(p => p.PropertyType.IsClass 
-                                                                    && !p.PropertyType.IsGenericType
-                                                                    && !(p.PropertyType == typeof(string))
-                                                                    && !(p.GetValue(data, null) is IList)).ToList();
-            foreach (var item in TypeFields)
-            {
-                var table = new DataTable()
-                {
-                    TableName = item.Name
-                };
-                // 取得屬性的類型泛型 非單一時報錯
-                //var type = item.PropertyType.GetType();
-                // 取得資料的 名稱、屬性 列表 // 列表內資料非泛型、非列表
-                //var columnFieldList = type.GetProperties().Select(x => new { x.Name, x.PropertyType }).ToList();
-                var test = item.PropertyType.GetType().GetProperties().ToList();
-                // todo: 取class屬性
-                var columnFieldList = item.PropertyType.GetType().GetProperties().Where(p => !(p.PropertyType.IsGenericType && p is IList)).Select(x => new { x.Name, x.PropertyType }).ToList();
-                // List<T> 中取得 T 的 屬性名稱、類型
-                foreach (var column in columnFieldList)
-                {
-                    // 塞到欄位中 類型為基礎類型或屬性的類型
-                    table.Columns.Add(column.Name, Nullable.GetUnderlyingType(column.PropertyType) ?? column.PropertyType);
-                }
-                var row = table.NewRow();
-
-                // 取得資料的 名稱、值  列表
-                var dataMapping = item.GetType().GetProperties().ToDictionary(x => x.Name, x => x.GetValue(item, null)).ToList();
-                // 取得資料的 值  列表
-                var columnNameList = columnFieldList.Select(m => m.Name).ToList();
-                foreach (var fieldData in dataMapping)
-                {
-                    // 名稱若有對到
-                    if (columnFieldList.Any(x => x.Name == fieldData.Key))
-                    {
-                        // 名稱對應的row 塞值 // 找不到報null錯
-                        row[fieldData.Key] = fieldData.Value ?? DBNull.Value;
-                    }
-                }
-                table.Rows.Add(row);
-                if (table.Rows.Count == 0 && fillNewRowWhenEmpty)
-                {
-                    table.Rows.Add(table.NewRow());
-                }
-                tables.Add(table);
-            }
-
-            return tables;
-        }
-
         #endregion
 
         #region 取得文檔串流

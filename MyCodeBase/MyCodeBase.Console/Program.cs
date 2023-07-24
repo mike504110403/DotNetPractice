@@ -90,7 +90,7 @@ while (t < 10)
 }
 var test = new Test()
 {
-    Name = "HHH",
+    UserName = "HHH",
     Age = 26,
     TestLists = testLists
 };

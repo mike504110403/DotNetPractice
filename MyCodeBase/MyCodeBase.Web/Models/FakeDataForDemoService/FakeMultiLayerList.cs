@@ -26,19 +26,11 @@ namespace MyCodeBase.Web.Models.FakeDataForDemoService
                 testLists.Add(testlist);
                 t += 1;
             }
-            var test = new TestMajor()
-            {
-                Name = "LKK",
-                Age = 16
-            };
-            var testMajor = new List<TestMajor>();
-            testMajor.Add(test);
             var data = new Test()
             {
-                Name = "HHH",
+                UserName = "HHH",
                 Age = 26,
-                TestLists = testLists,
-                TestMajor = test
+                TestLists = testLists
             };
 
             return data;

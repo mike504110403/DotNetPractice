@@ -61,7 +61,7 @@ namespace MyCodeBase.Web.Controllers
             var data = _FakeMultiLayerList.FakeListForBind();
 
             // 開啟範例文檔
-            // var filePath = GetPrintTempFilePath("test.docx");
+             var filePath = GetPrintTempFilePath("test.docx");
             // 路徑先寫死 等route整理好再用extension取
             var workBook = new Workbook("D:\\MyPractice\\DotNetPractice\\MyCodeBase\\MyCodeBase.Web\\Template\\test.xlsx");
             workBook.BindData(data);
