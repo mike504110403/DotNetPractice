@@ -395,5 +395,3 @@ D:\MyPractice\DotNetPractice\DotNetPractice\MyCodeBase\MyCodeBase.Web\obj\Debug\
 D:\MyPractice\DotNetPractice\DotNetPractice\MyCodeBase\MyCodeBase.Web\obj\Debug\MyCodeBase.Web.csproj.CopyComplete
 D:\MyPractice\DotNetPractice\DotNetPractice\MyCodeBase\MyCodeBase.Web\obj\Debug\MyCodeBase.Web.dll
 D:\MyPractice\DotNetPractice\DotNetPractice\MyCodeBase\MyCodeBase.Web\obj\Debug\MyCodeBase.Web.pdb
-D:\MyPractice\DotNetPractice\MyCodeBase\MyCodeBase.Web\bin\DocumentFormat.OpenXml.dll
-D:\MyPractice\DotNetPractice\MyCodeBase\MyCodeBase.Web\bin\DocumentFormat.OpenXml.xml
