@@ -12,6 +12,9 @@ using Aspose.Words.Reporting;
 using MyCodeBase.Web.Models.BaseService;
 using MyCodeBase.Web.Models.FakeDataForDemoService;
 using Aspose.Cells;
+using System.IO;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml;
 
 namespace MyCodeBase.Web.Controllers
 {
@@ -48,7 +51,9 @@ namespace MyCodeBase.Web.Controllers
             ////var mergeDocs = _FileService.MergeDocs(docs);
             //var combineDocs = _FileService.CombineAsposeDoc(docs); 
             //var combinModels = _FileService.CombineModelsToAsposeDoc(docs, doc);
-            
+            var doc2 = new Document("D:\\fileConvert.docx");
+            var test = doc2.GetFileStream(Aspose.Words.SaveFormat.Docx).ToArray();
+            var str = string.Join("", Array.ConvertAll(test, b => Convert.ToString(b, 2).PadLeft(8, '0')));
             return File(doc.GetFileStream(Aspose.Words.SaveFormat.Docx), "application/docx");
         }
 
@@ -69,5 +74,6 @@ namespace MyCodeBase.Web.Controllers
             
             return File(workBook.GetFileStream(Aspose.Cells.SaveFormat.Xlsx), "application/xlsx");
         }
+
     }
 }
