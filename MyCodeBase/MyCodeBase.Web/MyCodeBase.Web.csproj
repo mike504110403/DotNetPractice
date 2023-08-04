@@ -200,6 +200,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\VueTestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -230,6 +231,30 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Properties\vue\vue.cjs.js" />
+    <Content Include="Properties\vue\vue.cjs.min.js" />
+    <Content Include="Properties\vue\vue.cjs.prod.js" />
+    <Content Include="Properties\vue\vue.cjs.prod.min.js" />
+    <Content Include="Properties\vue\vue.esm-browser.js" />
+    <Content Include="Properties\vue\vue.esm-browser.min.js" />
+    <Content Include="Properties\vue\vue.esm-browser.prod.js" />
+    <Content Include="Properties\vue\vue.esm-browser.prod.min.js" />
+    <Content Include="Properties\vue\vue.esm-bundler.js" />
+    <Content Include="Properties\vue\vue.esm-bundler.min.js" />
+    <Content Include="Properties\vue\vue.global.js" />
+    <Content Include="Properties\vue\vue.global.min.js" />
+    <Content Include="Properties\vue\vue.global.prod.js" />
+    <Content Include="Properties\vue\vue.global.prod.min.js" />
+    <Content Include="Properties\vue\vue.runtime.esm-browser.js" />
+    <Content Include="Properties\vue\vue.runtime.esm-browser.min.js" />
+    <Content Include="Properties\vue\vue.runtime.esm-browser.prod.js" />
+    <Content Include="Properties\vue\vue.runtime.esm-browser.prod.min.js" />
+    <Content Include="Properties\vue\vue.runtime.esm-bundler.js" />
+    <Content Include="Properties\vue\vue.runtime.esm-bundler.min.js" />
+    <Content Include="Properties\vue\vue.runtime.global.js" />
+    <Content Include="Properties\vue\vue.runtime.global.min.js" />
+    <Content Include="Properties\vue\vue.runtime.global.prod.js" />
+    <Content Include="Properties\vue\vue.runtime.global.prod.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -239,6 +264,7 @@
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="libman.json" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -266,6 +292,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\VueTest\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
